@@ -11,14 +11,13 @@ public class StatsService {
     }
 
     public float averagePrice(long[] purchases) {
-        StatsService sum = new StatsService();
-        return sum.totalSales(purchases) / purchases.length;
+        return totalSales(purchases) / purchases.length;
     }
 
     public long maximumPrice(long[] purchases) {
         long maxPrice = purchases[0];
         int maxPriceMonthNum = 0;
-        for (int i = 0; i < purchases.length; i++){
+        for (int i = 1; i < purchases.length; i++){
             if (purchases[i] >= maxPrice){
                 maxPrice = purchases[i];
                 maxPriceMonthNum = (i + 1);
@@ -30,7 +29,7 @@ public class StatsService {
     public long minimumPrice(long[] purchases) {
         long minPrice = purchases[0];
         int minPriceMonthNum = 0;
-        for (int i = 0; i < purchases.length; i++){
+        for (int i = 1; i < purchases.length; i++){
             if (purchases[i] <= minPrice){
                 minPrice = purchases[i];
                 minPriceMonthNum = (i + 1);
@@ -40,8 +39,7 @@ public class StatsService {
     }
 
     public long numMonthsSalesLessAverage(long[] purchases) {
-        StatsService sum = new StatsService();
-        float averagePrice = sum.averagePrice(purchases);
+        float averagePrice = averagePrice(purchases);
         long numMonths = 0;
         for (int i = 0; i < purchases.length; i++){
             if (purchases[i] < averagePrice){
@@ -52,8 +50,7 @@ public class StatsService {
     }
 
     public long numMonthsSalesMoreAverage(long[] purchases) {
-        StatsService sum = new StatsService();
-        float averagePrice = sum.averagePrice(purchases);
+        float averagePrice = averagePrice(purchases);
         long numMonths = 0;
         for (int i = 0; i < purchases.length; i++){
             if (purchases[i] > averagePrice){
